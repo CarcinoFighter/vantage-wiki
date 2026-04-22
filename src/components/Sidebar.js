@@ -5,10 +5,10 @@ export default function Sidebar({ activePage, setActivePage, isSidebarOpen, setI
       
     <div className="sidebar-logo">
       <div className="logo-badge">
-        <img src="/logo.png" className="logo-icon" style={{height: '24px', width: 'auto', objectFit: 'contain'}} />
+        <img src="/logo.png" alt="Carcino Vantage" className="logo-icon" style={{height: '24px', width: 'auto', objectFit: 'contain'}} />
         <div>
-          <div className="logo-text">Carcino Vantage</div>
-          <div className="logo-sub">Wiki & Guides</div>
+          <div className="logo-text">Vantage</div>
+          <div className="logo-sub">Carcino Docs</div>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ export default function Sidebar({ activePage, setActivePage, isSidebarOpen, setI
     <div className="sidebar-section">
       <div className="sidebar-section-label">Departments</div>
       <a className={`nav-item dept-amber ${activePage === "writers" ? "active" : ""}`} onClick={() => setActivePage('writers')} href="#writers">
-        <img src="/icons/research.svg" className="nav-icon" style={{height: '18px', width: '18px'}} /> Writers's Block
+        <img src="/icons/research.svg" className="nav-icon" style={{height: '18px', width: '18px'}} /> {"Writers' Block"}
         <span className="nav-dot"></span>
       </a>
       <a className={`nav-item dept-blue ${activePage === "design" ? "active" : ""}`} onClick={() => setActivePage('design')} href="#design">

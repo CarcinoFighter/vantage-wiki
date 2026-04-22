@@ -6,18 +6,74 @@ import Sidebar from '@/components/Sidebar';
 export default function Home() {
   const [activePage, setActivePage] = useState('overview');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [themeMode, setThemeMode] = useState(() => {
+    if (typeof window === 'undefined') return 'auto';
+    const stored = window.localStorage.getItem('vantage-theme-mode');
+    return stored === 'light' || stored === 'dark' || stored === 'auto' ? stored : 'auto';
+  });
+  const pageLabel =
+    activePage === 'overview' ? 'Overview' :
+    activePage === 'editor' ? 'Editor' :
+    activePage === 'tasks' ? 'Tasks and Statuses' :
+    activePage === 'mobile' ? 'Mobile Guide' :
+    activePage === 'writers' ? 'Writers Block' :
+    activePage === 'design' ? 'Design Lab' :
+    activePage === 'dev' ? 'Development' :
+    activePage === 'marketing' ? 'Marketing' :
+    activePage === 'leadership' ? 'Leadership' :
+    activePage === 'proofreaders' ? 'Proofreaders' :
+    activePage === 'team' ? 'Team Directory' :
+    activePage === 'applications' ? 'Applications' :
+    activePage === 'comments' ? 'Task Comments' :
+    activePage === 'notifications' ? 'Notifications' :
+    activePage === 'account' ? 'Account and Settings' :
+    'Team Wiki';
 
-  // Close sidebar on page change for mobile
   useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsSidebarOpen(false);
-    }
     window.scrollTo(0, 0);
   }, [activePage]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (themeMode === 'auto') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', themeMode);
+    }
+    window.localStorage.setItem('vantage-theme-mode', themeMode);
+  }, [themeMode]);
+
+  const themeLabel = themeMode === 'auto' ? 'Theme: Auto' : themeMode === 'dark' ? 'Theme: Dark' : 'Theme: Light';
+  const setActivePageSafe = (next) => {
+    setActivePage(next);
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   return (
     <>
-      <div className="bg-orbs">
+      <div className="app-shell">
+      <header className="db-header">
+        <div className="db-brand">
+          <img className="db-brand-logo" src="/logo.png" alt="" aria-hidden="true" />
+          <span className="db-brand-sub">Carcino</span>
+          <span className="db-brand-word">Vantage</span>
+        </div>
+        <div className="db-vr"></div>
+        <div className="db-cap">{pageLabel}</div>
+        <div style={{ flex: 1 }}></div>
+        <button
+          type="button"
+          className="db-ghost"
+          onClick={() =>
+            setThemeMode((prev) => (prev === 'auto' ? 'light' : prev === 'light' ? 'dark' : 'auto'))
+          }
+        >
+          {themeLabel}
+        </button>
+      </header>
+      <div className="bg-orbs" aria-hidden="true">
         <div className="orb orb-1"></div>
         <div className="orb orb-2"></div>
         <div className="orb orb-3"></div>
@@ -25,7 +81,7 @@ export default function Home() {
       <div className="layout">
 
   {/*  Sidebar  */}
-  <Sidebar activePage={activePage} setActivePage={setActivePage} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+  <Sidebar activePage={activePage} setActivePage={setActivePageSafe} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
   {/*  Main Content  */}
   <main className="main">
@@ -34,7 +90,7 @@ export default function Home() {
     <div className={`page-section ${activePage === "overview" ? "active" : ""}`} id="page-overview">
       <div className="hero anim anim-1">
         <div className="hero-eyebrow"><span className="hero-dot"></span> Official Documentation</div>
-        <h1>The <em>Carcino Vantage</em><br />Team Wiki</h1>
+        <h1>Carcino <em>Vantage</em><br />Team Wiki</h1>
         <p>Your complete guide to every workflow in the platform — from writing your first article to approving content as Leadership. Upload screen recordings to each workflow card below.</p>
         <div className="hero-tags">
           <span className="hero-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writers' Block</span>
@@ -1652,6 +1708,7 @@ export default function Home() {
       >
         ☰
       </button>
+      </div>
     </>
   );
 }
