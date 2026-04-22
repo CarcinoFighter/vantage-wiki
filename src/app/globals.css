@@ -166,6 +166,10 @@ a {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--mid);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 46vw;
 }
 
 .db-btn {
@@ -334,6 +338,7 @@ a {
   flex: 1;
   overflow-y: auto;
   background: var(--paper);
+  min-width: 0;
 }
 
 .hero {
@@ -362,7 +367,7 @@ a {
 
 .hero h1 {
   font-family: var(--ff-display);
-  font-size: 44px;
+  font-size: clamp(30px, 4.2vw, 44px);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--ink);
@@ -424,7 +429,7 @@ a {
 .section-title {
   margin-top: 9px;
   font-family: var(--ff-display);
-  font-size: 30px;
+  font-size: clamp(22px, 2.5vw, 30px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -1034,6 +1039,15 @@ video::-webkit-media-controls-enclosure {
 }
 
 @media (max-width: 768px) {
+  .db-header {
+    padding: 0 14px;
+    gap: 8px;
+  }
+
+  .db-cap {
+    max-width: 38vw;
+  }
+
   .sidebar {
     position: fixed;
     z-index: 90;
@@ -1084,5 +1098,47 @@ video::-webkit-media-controls-enclosure {
   .ov-card,
   .workflow-card {
     border-right: none !important;
+  }
+
+  .dept-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dept-header-badge {
+    margin-left: 0;
+  }
+
+  .vp-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .vp-scrub {
+    min-width: 160px;
+  }
+
+  .wiki-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 520px) {
+  .db-cap {
+    display: none;
+  }
+
+  .hero,
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .vp-scrub {
+    flex-basis: 100%;
+    order: 3;
   }
 }
