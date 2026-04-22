@@ -997,13 +997,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint">
-                <div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div>
-                <div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div>
-              </div>
-              <video id="vid-task-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-tsk-1">
+              <video src="/videos/tsk-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writers</span></div>
               <div className="wf-title">Creating & Submitting a Task</div>
@@ -1019,13 +1015,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint">
-                <div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div>
-                <div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div>
-              </div>
-              <video id="vid-task-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-tsk-2">
+              <video src="/videos/tsk-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--indigo)', borderColor: 'rgba(99,102,241,0.3)', background: 'rgba(99,102,241,0.08)'}}>Leadership</span></div>
               <div className="wf-title">Assigning a Task to a Team Member</div>
@@ -1068,10 +1060,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(245,158,11,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-wr-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-wr-1">
+              <video src="/videos/wr-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writer</span></div>
               <div className="wf-title">Creating a New Article</div>
@@ -1086,10 +1077,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(245,158,11,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-wr-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-wr-2">
+              <video src="/videos/wr-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writer</span></div>
               <div className="wf-title">Writing a Blog Post</div>
@@ -1104,10 +1094,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(245,158,11,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-wr-3" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-wr-3">
+              <video src="/videos/wr-3.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writer</span></div>
               <div className="wf-title">Submitting a Survivor Story</div>
@@ -1122,10 +1111,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(245,158,11,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-wr-4" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-wr-4">
+              <video src="/videos/wr-4.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--amber)', borderColor: 'rgba(245,158,11,0.3)', background: 'rgba(245,158,11,0.08)'}}>Writer</span></div>
               <div className="wf-title">Tracking Word Count & Goals</div>
@@ -1166,10 +1154,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(59,130,246,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-dl-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-des-1">
+              <video src="/videos/des-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--blue)', borderColor: 'rgba(59,130,246,0.3)', background: 'rgba(59,130,246,0.08)'}}>Design</span></div>
               <div className="wf-title">Picking Up a Design Task</div>
@@ -1184,10 +1171,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(59,130,246,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-dl-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-des-2">
+              <video src="/videos/des-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--blue)', borderColor: 'rgba(59,130,246,0.3)', background: 'rgba(59,130,246,0.08)'}}>Design</span></div>
               <div className="wf-title">Submitting a Design Deliverable</div>
@@ -1229,10 +1215,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(16,185,129,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-dev-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-dev-1">
+              <video src="/videos/dev-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--emerald)', borderColor: 'rgba(16,185,129,0.3)', background: 'rgba(16,185,129,0.08)'}}>Developer</span></div>
               <div className="wf-title">Reading the Development Dashboard</div>
@@ -1247,10 +1232,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(16,185,129,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-dev-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-dev-2">
+              <video src="/videos/dev-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--emerald)', borderColor: 'rgba(16,185,129,0.3)', background: 'rgba(16,185,129,0.08)'}}>Developer</span></div>
               <div className="wf-title">Tracking Technical Tasks</div>
@@ -1292,10 +1276,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(236,72,153,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-mkt-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-mkt-1">
+              <video src="/videos/mkt-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--pink)', borderColor: 'rgba(236,72,153,0.3)', background: 'rgba(236,72,153,0.08)'}}>Marketing</span></div>
               <div className="wf-title">Reading the Analytics Dashboard</div>
@@ -1310,10 +1293,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(236,72,153,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-mkt-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-mkt-2">
+              <video src="/videos/mkt-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--pink)', borderColor: 'rgba(236,72,153,0.3)', background: 'rgba(236,72,153,0.08)'}}>Marketing</span></div>
               <div className="wf-title">Managing Awareness Post Tasks</div>
@@ -1355,10 +1337,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(99,102,241,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-ld-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-ld-1">
+              <video src="/videos/ld-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--indigo)', borderColor: 'rgba(99,102,241,0.3)', background: 'rgba(99,102,241,0.08)'}}>Leadership</span></div>
               <div className="wf-title">Assigning Tasks to Team Members</div>
@@ -1374,10 +1355,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(99,102,241,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-ld-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-ld-2">
+              <video src="/videos/ld-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--indigo)', borderColor: 'rgba(99,102,241,0.3)', background: 'rgba(99,102,241,0.08)'}}>Leadership</span></div>
               <div className="wf-title">Reviewing & Approving Submissions</div>
@@ -1393,10 +1373,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(99,102,241,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-ld-3" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-ld-3">
+              <video src="/videos/ld-3.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--indigo)', borderColor: 'rgba(99,102,241,0.3)', background: 'rgba(99,102,241,0.08)'}}>Leadership</span></div>
               <div className="wf-title">Monitoring Department Performance</div>
@@ -1411,10 +1390,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(99,102,241,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-ld-4" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-ld-4">
+              <video src="/videos/ld-4.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--indigo)', borderColor: 'rgba(99,102,241,0.3)', background: 'rgba(99,102,241,0.08)'}}>Leadership</span></div>
               <div className="wf-title">Inviting New Team Members</div>
@@ -1457,10 +1435,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(152,117,193,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-pr-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-pr-1">
+              <video src="/videos/pr-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>Proofreader</span></div>
               <div className="wf-title">Accessing the Proofreader Queue</div>
@@ -1475,10 +1452,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(152,117,193,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-pr-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-pr-2">
+              <video src="/videos/pr-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>Proofreader</span></div>
               <div className="wf-title">Reviewing a Document</div>
@@ -1493,10 +1469,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'rgba(152,117,193,0.1)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-pr-3" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-pr-3">
+              <video src="/videos/pr-3.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>Proofreader</span></div>
               <div className="wf-title">Approving & Forwarding Content</div>
@@ -1897,10 +1872,9 @@ export default function Home() {
 
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-notif-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-notif-1">
+              <video src="/videos/notif-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>All Roles</span></div>
               <div className="wf-title">Enabling Push Notifications</div>
@@ -1929,10 +1903,9 @@ export default function Home() {
       <div className="section">
         <div className="cards-grid">
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-acc-1" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-acc-1">
+              <video src="/videos/acc-1.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>All Roles</span></div>
               <div className="wf-title">Updating Your Profile & Avatar</div>
@@ -1947,10 +1920,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-acc-2" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-acc-2">
+              <video src="/videos/acc-2.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>All Roles</span></div>
               <div className="wf-title">Light / Dark Mode & Themes</div>
@@ -1965,10 +1937,9 @@ export default function Home() {
           </div>
 
           <div className="workflow-card">
-            <div className="wf-video-slot" >
-              <div className="upload-hint"><div className="upload-hint-icon" style={{background: 'var(--accent-sub)'}}>🎬</div><div className="upload-hint-text"><p>Video Coming Soon</p><span>Recording will appear here</span></div></div>
-              <video id="vid-acc-3" controls></video>
-              </div>
+            <div className="wf-video-slot has-video" id="slot-acc-3">
+              <video src="/videos/acc-3.mp4" controls></video>
+            </div>
             <div className="wf-body">
               <div className="wf-tags"><span className="wf-tag" style={{color: 'var(--accent-light)', borderColor: 'rgba(152,117,193,0.3)', background: 'rgba(152,117,193,0.08)'}}>All Roles</span></div>
               <div className="wf-title">Installing as a PWA</div>
