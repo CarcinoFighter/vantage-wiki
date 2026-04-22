@@ -51,6 +51,291 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+    const formatTime = (seconds) => {
+      if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+      const whole = Math.floor(seconds);
+      const m = Math.floor(whole / 60);
+      const s = whole % 60;
+      return `${m}:${String(s).padStart(2, '0')}`;
+    };
+
+    const svg = (pathD) =>
+      `<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="${pathD}"/></svg>`;
+
+    const ICON_PLAY = svg('M8 5v14l11-7z');
+    const ICON_PAUSE = svg('M6 5h4v14H6zM14 5h4v14h-4z');
+    const ICON_FULL = svg('M7 14H5v5h5v-2H7v-3zm0-4h2V7h3V5H5v5zm10 9h-3v2h5v-5h-2v3zm0-14V8h-2V7h-3V5h5z');
+    const ICON_EXIT = svg('M5 16h2v3h3v2H5v-5zm0-8h5V5H7v3H5zm14 13h-5v-2h3v-3h2v5zm0-16v5h-2V7h-3V5h5z');
+
+    const cleanupFns = [];
+    const scope = document.querySelector('.page-section.active') || document;
+
+    const teardown = () => {
+      while (cleanupFns.length) {
+        const fn = cleanupFns.pop();
+        try { fn(); } catch {}
+      }
+    };
+
+    const enhanceVideo = (video) => {
+      if (!video || video.dataset.vpEnhanced === '1') return;
+      video.dataset.vpEnhanced = '1';
+
+      video.controls = false;
+      video.removeAttribute('controls');
+      video.playsInline = true;
+      if (!video.getAttribute('preload')) video.setAttribute('preload', 'metadata');
+
+      const slot = video.closest('.wf-video-slot') || video.parentElement;
+      if (!slot) return;
+
+      // Remove any older control bars if we re-enhance.
+      const oldWrap = slot.closest('.vp-wrap');
+      if (oldWrap && oldWrap.dataset.vpWrap === '1') {
+        // Already wrapped; ensure it has a controls row.
+      }
+
+      let wrap = slot.closest('.vp-wrap');
+      if (!wrap) {
+        wrap = document.createElement('div');
+        wrap.className = 'vp-wrap';
+        wrap.dataset.vpWrap = '1';
+        slot.parentNode.insertBefore(wrap, slot);
+        wrap.appendChild(slot);
+      }
+
+      // Ensure there is exactly one controls row for this wrap.
+      const existing = wrap.querySelector(':scope > .vp-controls');
+      if (existing) existing.remove();
+
+      const controls = document.createElement('div');
+      controls.className = 'vp-controls';
+      controls.tabIndex = 0;
+      controls.setAttribute('role', 'group');
+      controls.setAttribute('aria-label', 'Video controls');
+
+      const left = document.createElement('div');
+      left.className = 'vp-left';
+
+      const play = document.createElement('button');
+      play.type = 'button';
+      play.className = 'vp-btn';
+      play.setAttribute('aria-label', 'Play');
+      play.innerHTML = ICON_PLAY;
+
+      const time = document.createElement('div');
+      time.className = 'vp-times';
+      const tCur = document.createElement('span');
+      tCur.className = 'vp-time';
+      tCur.textContent = '0:00';
+      const tSep = document.createElement('span');
+      tSep.className = 'vp-time-sep';
+      tSep.textContent = '/';
+      const tDur = document.createElement('span');
+      tDur.className = 'vp-time';
+      tDur.textContent = '0:00';
+      time.appendChild(tCur);
+      time.appendChild(tSep);
+      time.appendChild(tDur);
+
+      left.appendChild(play);
+      left.appendChild(time);
+
+      const scrub = document.createElement('input');
+      scrub.type = 'range';
+      scrub.className = 'vp-scrub';
+      scrub.min = '0';
+      scrub.max = '0';
+      scrub.step = '0.01';
+      scrub.value = '0';
+      scrub.disabled = true;
+      scrub.setAttribute('aria-label', 'Seek');
+
+      const right = document.createElement('div');
+      right.className = 'vp-right';
+
+      const fs = document.createElement('button');
+      fs.type = 'button';
+      fs.className = 'vp-btn vp-btn-ghost';
+      fs.setAttribute('aria-label', 'Fullscreen');
+      fs.innerHTML = ICON_FULL;
+
+      right.appendChild(fs);
+
+      controls.appendChild(left);
+      controls.appendChild(scrub);
+      controls.appendChild(right);
+      wrap.appendChild(controls);
+
+      let seeking = false;
+
+      const bufferedPct = () => {
+        const d = Number.isFinite(video.duration) ? video.duration : 0;
+        if (!d || !video.buffered || video.buffered.length === 0) return 0;
+        try {
+          const end = video.buffered.end(video.buffered.length - 1);
+          return clamp((end / d) * 100, 0, 100);
+        } catch {
+          return 0;
+        }
+      };
+
+      const sync = () => {
+        const d = Number.isFinite(video.duration) ? video.duration : 0;
+        const t = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+        const pct = d ? clamp((t / d) * 100, 0, 100) : 0;
+
+        tCur.textContent = formatTime(t);
+        tDur.textContent = d ? formatTime(d) : '0:00';
+        scrub.disabled = !d;
+        scrub.max = String(d || 0);
+        if (!seeking) scrub.value = String(t);
+        scrub.style.setProperty('--vp-p', `${pct}%`);
+        scrub.style.setProperty('--vp-b', `${bufferedPct()}%`);
+
+        const paused = video.paused || video.ended;
+        play.innerHTML = paused ? ICON_PLAY : ICON_PAUSE;
+        play.setAttribute('aria-label', paused ? 'Play' : 'Pause');
+
+        const isFs = document.fullscreenElement === wrap;
+        fs.innerHTML = isFs ? ICON_EXIT : ICON_FULL;
+        fs.setAttribute('aria-label', isFs ? 'Exit fullscreen' : 'Fullscreen');
+      };
+
+      const togglePlay = async () => {
+        try {
+          if (video.paused) await video.play();
+          else video.pause();
+        } catch {
+          // Gesture restrictions: best-effort.
+        }
+      };
+
+      const seekBy = (delta) => {
+        const d = Number.isFinite(video.duration) ? video.duration : 0;
+        const t = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+        const next = d ? clamp(t + delta, 0, d) : Math.max(0, t + delta);
+        video.currentTime = next;
+        sync();
+      };
+
+      const onKey = (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          togglePlay();
+          return;
+        }
+        if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          onFs();
+          return;
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          seekBy(e.shiftKey ? -15 : -5);
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          seekBy(e.shiftKey ? 15 : 5);
+          return;
+        }
+      };
+
+      const onFs = async () => {
+        try {
+          if (document.fullscreenElement) await document.exitFullscreen();
+          else if (wrap.requestFullscreen) await wrap.requestFullscreen();
+        } catch {
+          // Best-effort.
+        }
+      };
+
+      const onScrubInput = () => {
+        seeking = true;
+        const next = Number(scrub.value);
+        if (Number.isFinite(next)) {
+          tCur.textContent = formatTime(next);
+          const d = Number.isFinite(video.duration) ? video.duration : 0;
+          const pct = d ? clamp((next / d) * 100, 0, 100) : 0;
+          scrub.style.setProperty('--vp-p', `${pct}%`);
+        }
+      };
+
+      const onScrubChange = () => {
+        const next = Number(scrub.value);
+        if (Number.isFinite(next)) video.currentTime = next;
+        seeking = false;
+        sync();
+      };
+
+      const onClickVideo = () => togglePlay();
+
+      play.addEventListener('click', togglePlay);
+      fs.addEventListener('click', onFs);
+      scrub.addEventListener('input', onScrubInput);
+      scrub.addEventListener('change', onScrubChange);
+      controls.addEventListener('keydown', onKey);
+      video.addEventListener('click', onClickVideo);
+
+      const onMeta = () => sync();
+      video.addEventListener('loadedmetadata', onMeta);
+      video.addEventListener('timeupdate', onMeta);
+      video.addEventListener('progress', onMeta);
+      video.addEventListener('play', onMeta);
+      video.addEventListener('pause', onMeta);
+      video.addEventListener('ended', onMeta);
+
+      const onFsChange = () => sync();
+      document.addEventListener('fullscreenchange', onFsChange);
+
+      sync();
+
+      cleanupFns.push(() => {
+        play.removeEventListener('click', togglePlay);
+        fs.removeEventListener('click', onFs);
+        scrub.removeEventListener('input', onScrubInput);
+        scrub.removeEventListener('change', onScrubChange);
+        controls.removeEventListener('keydown', onKey);
+        video.removeEventListener('click', onClickVideo);
+        video.removeEventListener('loadedmetadata', onMeta);
+        video.removeEventListener('timeupdate', onMeta);
+        video.removeEventListener('progress', onMeta);
+        video.removeEventListener('play', onMeta);
+        video.removeEventListener('pause', onMeta);
+        video.removeEventListener('ended', onMeta);
+        document.removeEventListener('fullscreenchange', onFsChange);
+        delete video.dataset.vpEnhanced;
+        controls.remove();
+        // Unwrap if we created the wrap and it only contains the slot.
+        if (wrap && wrap.dataset.vpWrap === '1' && wrap.parentNode) {
+          // Keep wrap if the slot is in fullscreen context; otherwise restore original layout.
+          if (wrap.contains(slot)) {
+            wrap.parentNode.insertBefore(slot, wrap);
+            wrap.remove();
+          }
+        }
+      });
+    };
+
+    const enhanceAll = () => {
+      const videos = Array.from(scope.querySelectorAll('video'));
+      for (const v of videos) enhanceVideo(v);
+    };
+
+    // First pass
+    enhanceAll();
+
+    // Watch for videos added by hydration/page switches.
+    const mo = new MutationObserver(() => enhanceAll());
+    mo.observe(scope, { childList: true, subtree: true });
+
+    cleanupFns.push(() => mo.disconnect());
+    return teardown;
+  }, [activePage]);
+
   return (
     <>
       <div className="app-shell">
